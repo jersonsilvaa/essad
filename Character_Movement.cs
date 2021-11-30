@@ -32,8 +32,8 @@ public class Character_Movement : MonoBehaviour
     //Components
     Transform feet;
     float feet_Radio = 0.02f;
-    Animator animator;
-    Rigidbody2D rigid_Body2D;
+    public Animator animator;
+    public Rigidbody2D rigid_Body2D;
     public GameObject character;
     public LayerMask platform_Mask;
     public BoxCollider2D box_Collider2D;
