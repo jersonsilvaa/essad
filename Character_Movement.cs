@@ -30,7 +30,7 @@ public class Character_Movement : MonoBehaviour
     bool is_Grounded;
 
     //Components
-    Transform feet;
+    public Transform foot;
     float feet_Radio = 0.02f;
     public Animator animator;
     public Rigidbody2D rigid_Body2D;
@@ -77,7 +77,15 @@ public class Character_Movement : MonoBehaviour
             sprint = false;
             velX = 5f;
         }
-    
+        //Crouch
+        if (inputX == 0 && Input.GetButton("Vertical_Down")) {
+            box_Collider2D.enabled = false;
+            crouch = true;
+        } else {
+            box_Collider2D.enabled = true;
+            crouch = false;
+        }
+
         }
     }
     //Corrutime for Sprint
