@@ -71,12 +71,27 @@ public class Character_Movement : MonoBehaviour
         if (Input.GetButton("Fire1")) {
             velX = 7.7f;
             run = true;
+            StartCoroutine(Sprint());
         } else {
             run = false;
             sprint = false;
             velX = 5f;
         }
     
+        }
+    }
+    //Corrutime for Sprint
+    public IEnumerator Sprint() {
+        yield return new WaitForSeconds(0.5f);
+        if (run) {
+            velX = 8.5f;
+            sprint = true;
+            //animation
+        } else {
+            StopCoroutine(Sprint());
+            sprint = false;
+            velX = 5f;
+            //animation
         }
     }
 }
