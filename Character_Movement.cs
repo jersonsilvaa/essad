@@ -22,7 +22,7 @@ public class Character_Movement : MonoBehaviour
     bool crouch;
     bool watch_Up;
     float high_Jump;
-    float jump = 25f;
+    float jump = 10f;
     float max_Jump = 2.5f;
     float minimun_Jump = 2f;
     float jump_Down;
@@ -58,13 +58,13 @@ public class Character_Movement : MonoBehaviour
             if (inputX > 0) {
                 rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
-                //animation
+                animator.SetFloat("VelX", inputX);
             }
 
             if (inputX < 0) {
                 rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
-                //animation
+                animator.SetFloat("velX", inputX);
         }
     //Run
     if (inputX > 0 || inputX < 0) {
@@ -88,21 +88,7 @@ public class Character_Movement : MonoBehaviour
             crouch = false;
         }
 
-        //Jump
-        is_Grounded = Physics2D.OverlapCircle(foot.position, foot_Radio, platform_Mask);
-        if (is_Grounded) {
-            //animation
-            if (Input.GetButtonDown("Jump") && !crouch) {
-                rigid_Body2D.velocity = Vector2.up * jump;
-            }
-            if (rigid_Body2D.velocity.y < 0) {
-                rigid_Body2D.velocity += Vector2.up * Physics2D.gravity.y * (max_Jump - 1) * Time.deltaTime;
-            } else if (rigid_Body2D.velocity.y > 0 && !Input.GetButton("Jump")) {
-                rigid_Body2D.velocity += Vector2.up * Physics2D.gravity.y * (minimun_Jump - 1) * Time.deltaTime;
-            } else {
-                //animation
-            }
-        }
+      
     }
     //Corrutime for Sprint
     public IEnumerator Sprint() {
