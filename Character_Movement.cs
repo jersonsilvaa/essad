@@ -54,6 +54,7 @@ public class Character_Movement : MonoBehaviour
         float inputY = Input.GetAxis("Vertical_Down");
         Vector2 dir = new Vector2(inputX, inputY);
 
+    //Movement X
             if (inputX > 0) {
                 rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -64,6 +65,18 @@ public class Character_Movement : MonoBehaviour
                 rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
                 //animation
+        }
+    //Run
+    if (inputX > 0 || inputX < 0) {
+        if (Input.GetButton("Fire1")) {
+            velX = 7.7f;
+            run = true;
+        } else {
+            run = false;
+            sprint = false;
+            velX = 5f;
+        }
+    
         }
     }
 }
