@@ -64,7 +64,7 @@ public class Character_Movement : MonoBehaviour
             if (inputX < 0) {
                 rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
-                animator.SetFloat("velX", inputX);
+                animator.SetFloat("velX", Mathf.Abs(inputX));
         }
     //Run
     if (inputX > 0 || inputX < 0) {
