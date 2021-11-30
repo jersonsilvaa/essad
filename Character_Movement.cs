@@ -54,18 +54,16 @@ public class Character_Movement : MonoBehaviour
         float inputY = Input.GetAxis("Vertical_Down");
         Vector2 dir = new Vector2(inputX, inputY);
 
-        if (!crouch) {
             if (inputX > 0) {
-                rigid_Body2D.velocity = (new Vector2(dir.x * velX * Time.deltaTime, rigid_Body2D.velocity.y));
+                rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
                 //animation
             }
 
             if (inputX < 0) {
-                rigid_Body2D.velocity = (new Vector2(dir.x * velX * Time.deltaTime, rigid_Body2D.velocity.y));
+                rigid_Body2D.velocity = (new Vector2(dir.x * velX, rigid_Body2D.velocity.y));
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
                 //animation
-            }
         }
     }
 }
