@@ -66,6 +66,14 @@ public class Character_Movement : MonoBehaviour
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
                 animator.SetFloat("velX", Mathf.Abs(inputX));
         }
+
+        //If inputX is diferent that 0
+        if (inputX != 0) {
+            animator.SetFloat("velX", 1);
+        } else {
+            animator.SetFloat("velX", 0);
+        }
+
     //Run
     if (inputX > 0 || inputX < 0) {
         if (Input.GetButton("Fire1")) {
