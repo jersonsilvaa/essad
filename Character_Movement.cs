@@ -31,7 +31,7 @@ public class Character_Movement : MonoBehaviour
 
     //Components
     public Transform foot;
-    float feet_Radio = 0.02f;
+    float foot_Radio = 0.02f;
     public Animator animator;
     public Rigidbody2D rigid_Body2D;
     public GameObject character;
@@ -76,8 +76,10 @@ public class Character_Movement : MonoBehaviour
             run = false;
             sprint = false;
             velX = 5f;
+            
         }
-        //Crouch
+    }
+         //Crouch
         if (inputX == 0 && Input.GetButton("Vertical_Down")) {
             box_Collider2D.enabled = false;
             crouch = true;
@@ -86,6 +88,20 @@ public class Character_Movement : MonoBehaviour
             crouch = false;
         }
 
+        //Jump
+        is_Grounded = Physics2D.OverlapCircle(foot.position, foot_Radio, platform_Mask);
+        if (is_Grounded) {
+            //animation
+            if (Input.GetButtonDown("Jump") && !crouch) {
+                rigid_Body2D.velocity = Vector2.up * jump;
+            }
+            if (rigid_Body2D.velocity.y < 0) {
+                rigid_Body2D.velocity += Vector2.up * Physics2D.gravity.y * (max_Jump - 1) * Time.deltaTime;
+            } else if (rigid_Body2D.velocity.y > 0 && !Input.GetButton("Jump")) {
+                rigid_Body2D.velocity += Vector2.up * Physics2D.gravity.y * (minimun_Jump - 1) * Time.deltaTime;
+            } else {
+                //animation
+            }
         }
     }
     //Corrutime for Sprint
